@@ -16,12 +16,12 @@ sastoj-frontend-v2/
 │   ├── host-competition/
 │   └── host-practice/
 ├── libs/
-│   ├── remote-component/
-│   ├── remote-page/
+│   ├── remote-components/
+│   ├── remote-pages/
 │   ├── remote-utils/
 │   ├── remote-auth/
-│   ├── remote-api/
-│   └── remote-store/
+│   ├── remote-apis/
+│   └── remote-stores/
 ├── types/
 ├── nx.json
 └── package.json
