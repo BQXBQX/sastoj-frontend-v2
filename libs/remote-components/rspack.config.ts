@@ -8,12 +8,23 @@ const isDev = process.env.NODE_ENV === 'development';
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
 
 export default defineConfig({
+  name: 'remote_components',
   context: __dirname,
   entry: {
-    main: './src/main.tsx',
+    main: './src/index.ts',
   },
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
+  },
+  output: {
+    publicPath: isDev ? 'http://localhost:9090/' : '/dist/',
+    filename: '[name].js',
+    path: `${__dirname}/dist`,
+    library: {
+      type: 'umd',
+      name: 'components',
+    },
+    clean: true,
   },
   module: {
     rules: [
@@ -48,19 +59,30 @@ export default defineConfig({
     ],
   },
   plugins: [
-    new rspack.HtmlRspackPlugin({
-      template: './index.html',
-    }),
     isDev ? new RefreshPlugin() : null,
     new ModuleFederationPlugin({
-      name: 'host_competition',
-      remotes: {
-        federation_provider:
-          'remote_components@http://localhost:9090/mf-manifest.json',
+      name: 'remote_components', // Ensure this is properly set
+      exposes: {
+        './Test': './src/Test.tsx', // Check if the path is correct
       },
-      shared: ['react', 'react-dom'],
+      shared: {
+        react: {
+          singleton: true, // Ensure react is treated as a singleton
+          eager: true,
+        },
+        'react-dom': {
+          singleton: true, // Ensure react-dom is treated as a singleton
+          eager: true,
+        },
+      },
     }),
-  ].filter(Boolean),
+  ].filter(Boolean), // Remove null values from the plugins array
+  devServer: {
+    port: 9090,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
   optimization: {
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin(),
