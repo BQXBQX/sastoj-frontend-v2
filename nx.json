@@ -2,7 +2,11 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "production": ["default"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json"
+    ],
     "sharedGlobals": []
   },
   "plugins": [
@@ -16,7 +20,14 @@
           "targetName": "build",
           "configName": "tsconfig.lib.json"
         }
-      }
+      },
+      "exclude": ["apps/host-competition/*"]
     }
-  ]
+  ],
+  "targetDefaults": {
+    "@nx/vite:test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
+    }
+  }
 }
