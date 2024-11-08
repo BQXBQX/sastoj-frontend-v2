@@ -15,6 +15,9 @@ export default defineConfig({
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
   },
+  output: {
+    publicPath: isDev ? 'http://localhost:8081/' : 'auto', // Replace with your production URL if applicable
+  },
   module: {
     rules: [
       {
