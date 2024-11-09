@@ -11,4 +11,10 @@ export default {
     "pnpm --filter @sastoj-frontend-v2/remote-components format",
     "git add .",
   ],
+  "./libs/remote-pages/**.{js,cjs,ts,json,css,scss,tsx,sass,vue}": () => [
+    "pnpm --filter @sastoj-frontend-v2/remote-pages lint",
+    "pnpm --filter @sastoj-frontend-v2/remote-pages build",
+    "pnpm --filter @sastoj-frontend-v2/remote-pages format",
+    "git add .",
+  ],
 };
