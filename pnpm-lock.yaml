@@ -201,6 +201,73 @@ importers:
         specifier: ^8.8.1
         version: 8.13.0(eslint@9.14.0(jiti@1.21.6))(typescript@5.6.3)
 
+  libs/remote-pages:
+    dependencies:
+      '@module-federation/enhanced':
+        specifier: ^0.7.1
+        version: 0.7.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)(webpack@5.96.1(@swc/core@1.5.29(@swc/helpers@0.5.13)))
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@eslint/compat':
+        specifier: ^1.2.0
+        version: 1.2.2(eslint@9.14.0(jiti@1.21.6))
+      '@eslint/js':
+        specifier: ^9.12.0
+        version: 9.14.0
+      '@module-federation/rsbuild-plugin':
+        specifier: ^0.7.1
+        version: 0.7.1(@module-federation/enhanced@0.7.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)(webpack@5.96.1(@swc/core@1.5.29(@swc/helpers@0.5.13))))(@rsbuild/core@1.1.0)
+      '@rspack/cli':
+        specifier: ^1.1.0
+        version: 1.1.0(@rspack/core@1.1.0(@swc/helpers@0.5.13))(@types/express@4.17.21)(webpack@5.96.1(@swc/core@1.5.29(@swc/helpers@0.5.13)))
+      '@rspack/core':
+        specifier: ^1.1.0
+        version: 1.1.0(@swc/helpers@0.5.13)
+      '@rspack/plugin-react-refresh':
+        specifier: 1.0.0
+        version: 1.0.0(react-refresh@0.14.2)
+      '@types/react':
+        specifier: ^18.3.1
+        version: 18.3.12
+      '@types/react-dom':
+        specifier: ^18.3.1
+        version: 18.3.1
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      eslint:
+        specifier: ^9.12.0
+        version: 9.14.0(jiti@1.21.6)
+      eslint-plugin-react:
+        specifier: ^7.37.1
+        version: 7.37.2(eslint@9.14.0(jiti@1.21.6))
+      eslint-plugin-react-hooks:
+        specifier: ^5.0.0
+        version: 5.0.0(eslint@9.14.0(jiti@1.21.6))
+      globals:
+        specifier: ^15.11.0
+        version: 15.12.0
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      react-refresh:
+        specifier: ^0.14.0
+        version: 0.14.2
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@18.16.9)(typescript@5.6.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
+      typescript-eslint:
+        specifier: ^8.8.1
+        version: 8.13.0(eslint@9.14.0(jiti@1.21.6))(typescript@5.6.3)
+
 packages:
 
   '@ampproject/remapping@2.3.0':
