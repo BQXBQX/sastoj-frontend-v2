@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
-import './App.css';
 import { Test } from 'remote_components/Test';
 import { Button } from 'remote_pages/Button';
 
