@@ -1,0 +1,39 @@
+{
+  "name": "@sastoj-frontend-v2/host-management",
+  "version": "0.1.0",
+  "scripts": {
+    "reset": "npx rimraf node_modules ./**/node_modules",
+    "dev": "modern dev",
+    "build": "modern build",
+    "start": "modern start",
+    "serve": "modern serve",
+    "new": "modern new",
+    "lint": "eslint .",
+    "upgrade": "modern upgrade",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=16.18.1"
+  },
+  "dependencies": {
+    "@modern-js/runtime": "2.61.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "eslint": "^9.14.0",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "@modern-js/app-tools": "2.61.0",
+    "@modern-js/tsconfig": "2.61.0",
+    "typescript": "~5.0.4",
+    "@types/node": "~18.11.9",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "~18.3.1",
+    "rimraf": "^6.0.1"
+  },
+  "nx": {
+    "name": "host-management"
+  }
+}
