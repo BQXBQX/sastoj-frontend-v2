@@ -12,5 +12,9 @@
     "inputs": ["default"],
     "outputs": ["{projectRoot}/dist"],
     "cache": true
+  },
+  "dev": {
+    "inputs": ["default"],
+    "cache": true
   }
 }
