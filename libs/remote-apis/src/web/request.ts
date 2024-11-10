@@ -1,12 +1,12 @@
-import axios from "axios";
-import { beforeRequest, responseFailed, responseSuccess } from "./interceptors";
+import axios from 'axios';
+import { beforeRequest, responseFailed, responseSuccess } from './interceptors';
 
 // axios二次封装
-const devBaseURL = "/api";
-const proBaseURL = "/api";
+const devBaseURL = '/api';
+const proBaseURL = '/api';
 
 const BASE_URL =
-  process.env.NODE_ENV === "development" ? devBaseURL : proBaseURL;
+  process.env.NODE_ENV === 'development' ? devBaseURL : proBaseURL;
 
 const TIMEOUT_MILLISECONDS = 60000; // 超时链接
 

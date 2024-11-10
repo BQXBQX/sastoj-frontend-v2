@@ -1,5 +1,5 @@
-import type { AxiosRequestConfig } from "axios";
-import qs from "qs";
+import type { AxiosRequestConfig } from 'axios';
+import qs from 'qs';
 
 export class RequestCanceler {
   pendingRequest: Map<string, AbortController>;
@@ -11,11 +11,11 @@ export class RequestCanceler {
   generateReqKey(config: AxiosRequestConfig): string {
     const { method, url } = config;
     return [
-      url ?? "",
-      method ?? "",
+      url ?? '',
+      method ?? '',
       qs.stringify(config.params),
       qs.stringify(config.data),
-    ].join("&");
+    ].join('&');
   }
 
   addPendingRequest(config: AxiosRequestConfig) {
