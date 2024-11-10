@@ -1,16 +1,12 @@
-import '@mantine/core/styles.css';
-import { Radio } from '@mantine/core';
-import { createTheme, MantineProvider } from '@mantine/core';
+import { Radio } from '@douyinfe/semi-ui';
 
-const theme = createTheme({
-  /** Put your mantine theme override here */
-});
 export const Button = () => {
   return (
     <>
-      <MantineProvider theme={theme}>
-        Button <Radio label="I cannot be unchecked" />
-      </MantineProvider>
+      Button{' '}
+      <Radio aria-label="单选示例" name="demo-radio">
+        Radio
+      </Radio>
     </>
   );
 };
