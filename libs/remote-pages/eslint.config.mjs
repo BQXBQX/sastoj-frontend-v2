@@ -27,5 +27,5 @@ export default [
       ...reactHooks.configs.recommended.rules,
     },
   },
-  { ignores: ['dist/', 'postcss.config.cjs'] },
+  { ignores: ['dist/', 'postcss.config.cjs', '@mf-types'] },
 ];
