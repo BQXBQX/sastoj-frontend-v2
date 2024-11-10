@@ -64,6 +64,7 @@ export default defineConfig({
       name: 'remote_pages', // Ensure this is properly set
       exposes: {
         './Button': './src/Button.tsx', // Check if the path is correct
+        './login': './src/pages/login.tsx',
       },
       shared: {
         react: {
