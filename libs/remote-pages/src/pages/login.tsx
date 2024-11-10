@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as variables from '../const/Variable';
 import { Logo } from '../components/Logo';
-import { Button, Input } from '@douyinfe/semi-ui';
+import { Button, Form, Input } from '@douyinfe/semi-ui';
 import { IconKey, IconUser } from '@douyinfe/semi-icons';
 import { useCallback, useState } from 'react';
 import { useSWRLogin } from 'remote_apis/auth';
@@ -59,6 +59,8 @@ const Title = styled.p`
 
 export interface LoginProps {
   title?: string;
+  desc?: string;
+  loginCallback?: () => void;
 }
 
 export default function Login(props: LoginProps) {
@@ -68,7 +70,8 @@ export default function Login(props: LoginProps) {
   const loginTrigger = useSWRLogin();
 
   const handleClick = useCallback((username: string, password: string) => {
-    loginTrigger(username, password);
+    void loginTrigger(username, password);
+    if (props.loginCallback) props.loginCallback();
   }, []);
 
   return (
@@ -81,22 +84,29 @@ export default function Login(props: LoginProps) {
       </LeftContainer>
       <RightContainer>
         <Title>{props.title}</Title>
-        <span>This is SAST Online Judge Dashboard</span>
-        <Input
-          style={{ width: '70%' }}
-          size="large"
-          prefix={<IconUser />}
-          value={username}
-          onChange={setUsername}
-        ></Input>
-        <Input
-          style={{ width: '70%' }}
-          size="large"
-          prefix={<IconKey />}
-          mode="password"
-          value={password}
-          onChange={setPassword}
-        ></Input>
+        <span>{props.desc}</span>
+        <Form
+          style={{
+            display: 'flex',
+            gap: '1rem',
+            flexDirection: 'column',
+            width: '70%',
+          }}
+        >
+          <Input
+            size="large"
+            prefix={<IconUser />}
+            value={username}
+            onChange={setUsername}
+          ></Input>
+          <Input
+            size="large"
+            prefix={<IconKey />}
+            mode="password"
+            value={password}
+            onChange={setPassword}
+          ></Input>
+        </Form>
         <Button
           style={{ width: '70%', background: `${variables.BLACK_BACKGROUND}` }}
           theme="solid"

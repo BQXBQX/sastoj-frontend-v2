@@ -18,7 +18,7 @@ const canceler = new RequestCanceler();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const beforeRequest = (config: InternalAxiosRequestConfig<any>) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('authToken');
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   token && (config.headers.token = token);
 
