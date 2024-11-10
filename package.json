@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "commit": "git add .&&pnpm lint-staged -p false && pnpm cz",
-    "dev": "nx run-many --target=dev --all",
+    "dev": "nx run-many --target=dev --all --parallel=4",
     "lint": "nx run-many --target=lint --all"
   },
   "private": true,
@@ -37,5 +37,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

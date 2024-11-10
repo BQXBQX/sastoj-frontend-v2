@@ -4,6 +4,7 @@ import { Logo } from '../components/Logo';
 import { Button, Input } from '@douyinfe/semi-ui';
 import { IconKey, IconUser } from '@douyinfe/semi-icons';
 import { useCallback, useState } from 'react';
+import { useSWRLogin } from 'remote_apis/auth';
 
 const Container = styled.div`
   width: 100%;
@@ -64,9 +65,12 @@ export default function Login(props: LoginProps) {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const loginTrigger = useSWRLogin();
+
   const handleClick = useCallback((username: string, password: string) => {
-    console.log(username, password);
+    loginTrigger(username, password);
   }, []);
+
   return (
     <Container>
       <LeftContainer>

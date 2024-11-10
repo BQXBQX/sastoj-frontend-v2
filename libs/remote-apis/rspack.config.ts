@@ -8,7 +8,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
 
 export default defineConfig({
-  name: 'remote_pages',
+  name: 'remote_apis',
   context: __dirname,
   entry: {
     main: './src/index.ts',
@@ -17,12 +17,12 @@ export default defineConfig({
     extensions: ['...', '.ts', '.tsx', '.jsx'],
   },
   output: {
-    publicPath: isDev ? 'http://localhost:9091/' : '/dist/',
+    publicPath: isDev ? 'http://localhost:9092/' : '/dist/',
     filename: '[name].js',
     path: `${__dirname}/dist`,
     library: {
       type: 'umd',
-      name: 'pages',
+      name: 'apis',
     },
     clean: true,
   },
@@ -61,13 +61,9 @@ export default defineConfig({
   plugins: [
     isDev ? new RefreshPlugin() : null,
     new ModuleFederationPlugin({
-      name: 'remote_pages', // Ensure this is properly set
-      remotes: {
-        remote_apis: 'remote_apis@http://localhost:9092/mf-manifest.json',
-      },
+      name: 'remote_apis', // Ensure this is properly set
       exposes: {
-        './Button': './src/Button.tsx', // Check if the path is correct
-        './login': './src/pages/login.tsx',
+        './auth': './src/SWRHooks/auth.ts', // Check if the path is correct
       },
       shared: {
         react: {
@@ -82,7 +78,7 @@ export default defineConfig({
     }),
   ].filter(Boolean), // Remove null values from the plugins array
   devServer: {
-    port: 9091,
+    port: 9092,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
