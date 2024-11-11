@@ -16,7 +16,7 @@ export default defineConfig({
     extensions: ['...', '.ts', '.tsx', '.jsx'],
   },
   output: {
-    publicPath: isDev ? 'http://localhost:8082/' : 'auto', // Replace with your production URL if applicable
+    publicPath: isDev ? 'http://localhost:8081/' : 'auto', // Replace with your production URL if applicable
   },
   module: {
     rules: [
@@ -56,13 +56,20 @@ export default defineConfig({
     }),
     isDev ? new RefreshPlugin() : null,
     new ModuleFederationPlugin({
-      name: 'host_competition',
+      name: 'host_management',
       remotes: {
-        remote_components:
-          'remote_components@http://localhost:9090/mf-manifest.json',
         remote_pages: 'remote_pages@http://localhost:9091/mf-manifest.json',
       },
-      shared: ['react', 'react-dom'],
+      shared: {
+        react: {
+          singleton: true, // Ensure react is treated as a singleton
+          eager: true,
+        },
+        'react-dom': {
+          singleton: true, // Ensure react-dom is treated as a singleton
+          eager: true,
+        },
+      },
     }),
   ].filter(Boolean),
   optimization: {
@@ -76,16 +83,16 @@ export default defineConfig({
   experiments: {
     css: true,
   },
-  devServer: isDev
-    ? {
-        proxy: [
-          {
-            context: ['/api'],
-            target: 'https://acm.sast.fun',
-            changeOrigin: true,
-            // logLevel: 'debug', // 启用详细日志记录
-          },
-        ],
-      }
-    : undefined,
+  devServer: {
+    historyApiFallback: true,
+    port: '8081',
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'https://acm.sast.fun',
+        changeOrigin: true,
+        // logLevel: 'debug', // 启用详细日志记录
+      },
+    ],
+  },
 });

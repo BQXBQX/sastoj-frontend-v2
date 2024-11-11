@@ -66,8 +66,8 @@ export default defineConfig({
         remote_apis: 'remote_apis@http://localhost:9092/mf-manifest.json',
       },
       exposes: {
-        './Button': './src/Button.tsx', // Check if the path is correct
-        './login': './src/pages/login.tsx',
+        './login': './src/pages/loginPage.tsx',
+        './button': './src/Button.tsx',
       },
       shared: {
         react: {

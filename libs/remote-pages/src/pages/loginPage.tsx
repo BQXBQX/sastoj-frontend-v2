@@ -52,7 +52,6 @@ const RightContainer = styled.div`
 const Title = styled.p`
   font-size: 1.5rem;
   font-weight: 700;
-  font-family: 'lato-bold';
   color: ${variables.BLACK};
   margin: 0.4rem;
 `;
@@ -63,7 +62,7 @@ export interface LoginProps {
   loginCallback?: () => void;
 }
 
-export default function Login(props: LoginProps) {
+export function LoginPage(props: LoginProps) {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 

@@ -5,6 +5,12 @@ export default {
     "pnpm --filter @sastoj-frontend-v2/host-competition format",
     "git add .",
   ],
+  "./apps/host-management/**/*.{js,cjs,ts,json,css,scss,tsx,sass,vue}": () => [
+    "pnpm --filter @sastoj-frontend-v2/host-management lint",
+    "pnpm --filter @sastoj-frontend-v2/host-management build",
+    "pnpm --filter @sastoj-frontend-v2/host-management format",
+    "git add .",
+  ],
   "./libs/remote-components/**/*.{js,cjs,ts,json,css,scss,tsx,sass,vue}":
     () => [
       "pnpm --filter @sastoj-frontend-v2/remote-components lint",

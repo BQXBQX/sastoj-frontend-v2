@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "commit": "git add .&&pnpm lint-staged -p false && pnpm cz",
-    "dev": "nx run-many --target=dev --all --parallel=4",
+    "libs:dev": "nx run-many --target=dev --projects=$(ls libs | tr '\n' ',')",
+    "competition:dev": "nx run-many --target=dev --projects=host-competition",
     "lint": "nx run-many --target=lint --all"
   },
   "private": true,
