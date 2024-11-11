@@ -58,11 +58,18 @@ export default defineConfig({
     new ModuleFederationPlugin({
       name: 'host_management',
       remotes: {
-        remote_components:
-          'remote_components@http://localhost:9090/mf-manifest.json',
         remote_pages: 'remote_pages@http://localhost:9091/mf-manifest.json',
       },
-      shared: ['react', 'react-dom'],
+      shared: {
+        react: {
+          singleton: true, // Ensure react is treated as a singleton
+          eager: true,
+        },
+        'react-dom': {
+          singleton: true, // Ensure react-dom is treated as a singleton
+          eager: true,
+        },
+      },
     }),
   ].filter(Boolean),
   optimization: {
