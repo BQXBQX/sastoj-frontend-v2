@@ -83,16 +83,16 @@ export default defineConfig({
   experiments: {
     css: true,
   },
-  devServer: isDev
-    ? {
-        proxy: [
-          {
-            context: ['/api'],
-            target: 'https://acm.sast.fun',
-            changeOrigin: true,
-            // logLevel: 'debug', // 启用详细日志记录
-          },
-        ],
-      }
-    : undefined,
+  devServer: {
+    historyApiFallback: true,
+    port: '8081',
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'https://acm.sast.fun',
+        changeOrigin: true,
+        // logLevel: 'debug', // 启用详细日志记录
+      },
+    ],
+  },
 });

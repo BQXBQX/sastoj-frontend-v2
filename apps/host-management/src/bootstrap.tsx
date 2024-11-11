@@ -1,6 +1,7 @@
 import { RouterProvider } from '@tanstack/react-router';
 import ReactDOM from 'react-dom/client';
 import { router } from './utils/router';
+import './index.css';
 
 const mount = ({ mountPoint }: { mountPoint: HTMLElement }) => {
   const root = ReactDOM.createRoot(mountPoint);

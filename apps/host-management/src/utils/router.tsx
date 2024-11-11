@@ -1,5 +1,4 @@
 import {
-  Link,
   Outlet,
   createRootRoute,
   createRoute,
@@ -8,21 +7,7 @@ import {
 import { LoginPage } from 'remote_pages/login';
 
 const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
-      <hr />
-      <Outlet />
-      {/* <TanStackRouterDevtools /> */}
-    </>
-  ),
+  component: () => <Outlet />,
 });
 
 const indexRoute = createRoute({
@@ -37,14 +22,17 @@ const indexRoute = createRoute({
   },
 });
 
-const aboutRoute = createRoute({
+const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/about',
-  component: function About() {
-    return <LoginPage title="hello world"></LoginPage>;
-  },
+  path: '/login',
+  component: () => (
+    <LoginPage
+      title="SAST Online Judge 管理平台"
+      desc="This is SAST Online Judge Management Platform"
+    />
+  ),
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, loginRoute]);
 
 export const router = createRouter({ routeTree, defaultPreload: 'intent' });
