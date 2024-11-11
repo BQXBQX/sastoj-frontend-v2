@@ -62,12 +62,13 @@ export default defineConfig({
     isDev ? new RefreshPlugin() : null,
     new ModuleFederationPlugin({
       name: 'remote_pages', // Ensure this is properly set
+      filename: 'remoteEntry.js',
       remotes: {
         remote_apis: 'remote_apis@http://localhost:9092/mf-manifest.json',
       },
       exposes: {
-        './Button': './src/Button.tsx', // Check if the path is correct
         './login': './src/pages/login.tsx',
+        './button': './src/Button.tsx',
       },
       shared: {
         react: {
