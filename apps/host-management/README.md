@@ -1,11 +1,11 @@
-# Modern.js App
+# Rspack Project
 
 ## Setup
 
 Install the dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 ## Get Started
@@ -13,25 +13,11 @@ pnpm install
 Start the dev server:
 
 ```bash
-pnpm dev
-```
-
-Enable optional features or add a new entry:
-
-```bash
-pnpm new
+npm run dev
 ```
 
 Build the app for production:
 
 ```bash
-pnpm build
+npm run build
 ```
-
-Preview the production build locally:
-
-```bash
-pnpm serve
-```
-
-For more information, see the [Modern.js documentation](https://modernjs.dev/en).

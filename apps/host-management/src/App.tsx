@@ -4,8 +4,8 @@ import './index.css';
 function App() {
   return (
     <LoginPage
-      title="SAST Online Judge 比赛平台"
-      desc="This is SAST Online Judge Competition Platform"
+      title="SAST Online Judge 管理平台"
+      desc="This is SAST Online Judge Management Platform"
     />
   );
 }

@@ -8,23 +8,15 @@ const isDev = process.env.NODE_ENV === 'development';
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
 
 export default defineConfig({
-  name: 'remote_pages',
   context: __dirname,
   entry: {
-    main: './src/index.ts',
+    main: './src/main.tsx',
   },
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
   },
   output: {
-    publicPath: isDev ? 'http://localhost:9091/' : '/dist/',
-    filename: '[name].js',
-    path: `${__dirname}/dist`,
-    library: {
-      type: 'umd',
-      name: 'pages',
-    },
-    clean: true,
+    publicPath: isDev ? 'http://localhost:8081/' : 'auto', // Replace with your production URL if applicable
   },
   module: {
     rules: [
@@ -59,35 +51,20 @@ export default defineConfig({
     ],
   },
   plugins: [
+    new rspack.HtmlRspackPlugin({
+      template: './index.html',
+    }),
     isDev ? new RefreshPlugin() : null,
     new ModuleFederationPlugin({
-      name: 'remote_pages', // Ensure this is properly set
-      filename: 'remoteEntry.js',
+      name: 'host_management',
       remotes: {
-        remote_apis: 'remote_apis@http://localhost:9092/mf-manifest.json',
+        remote_components:
+          'remote_components@http://localhost:9090/mf-manifest.json',
+        remote_pages: 'remote_pages@http://localhost:9091/mf-manifest.json',
       },
-      exposes: {
-        './login': './src/pages/loginPage.tsx',
-        './button': './src/Button.tsx',
-      },
-      shared: {
-        react: {
-          singleton: true, // Ensure react is treated as a singleton
-          eager: true,
-        },
-        'react-dom': {
-          singleton: true, // Ensure react-dom is treated as a singleton
-          eager: true,
-        },
-      },
+      shared: ['react', 'react-dom'],
     }),
-  ].filter(Boolean), // Remove null values from the plugins array
-  devServer: {
-    port: 9091,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-  },
+  ].filter(Boolean),
   optimization: {
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin(),
@@ -99,4 +76,16 @@ export default defineConfig({
   experiments: {
     css: true,
   },
+  devServer: isDev
+    ? {
+        proxy: [
+          {
+            context: ['/api'],
+            target: 'https://acm.sast.fun',
+            changeOrigin: true,
+            // logLevel: 'debug', // 启用详细日志记录
+          },
+        ],
+      }
+    : undefined,
 });
