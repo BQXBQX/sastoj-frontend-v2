@@ -59,6 +59,8 @@ export default defineConfig({
       name: 'host_management',
       remotes: {
         remote_pages: 'remote_pages@http://localhost:9091/mf-manifest.json',
+        remote_components:
+          'remote_components@http://localhost:9090/mf-manifest.json',
       },
       shared: {
         react: {

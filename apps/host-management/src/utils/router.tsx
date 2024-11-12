@@ -4,7 +4,9 @@ import {
   createRoute,
   createRouter,
 } from '@tanstack/react-router';
-import { LoginPage } from 'remote_pages/login';
+import Login from '../pages/login';
+import Select from '../pages/select';
+import { Index } from '../pages';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -13,26 +15,21 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: function Index() {
-    return (
-      <div className="p-2">
-        <h3>Welcome Home!</h3>
-      </div>
-    );
-  },
+  component: () => <Index />,
 });
 
 const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login',
-  component: () => (
-    <LoginPage
-      title="SAST Online Judge 管理平台"
-      desc="This is SAST Online Judge Management Platform"
-    />
-  ),
+  component: () => <Login />,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, loginRoute]);
+const selectRoute = createRoute({
+  getParentRoute: () => indexRoute,
+  path: '/select',
+  component: () => <Select />,
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, loginRoute, selectRoute]);
 
 export const router = createRouter({ routeTree, defaultPreload: 'intent' });

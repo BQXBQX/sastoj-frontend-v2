@@ -68,6 +68,8 @@ export default defineConfig({
       exposes: {
         './login': './src/pages/loginPage.tsx',
         './button': './src/Button.tsx',
+        './select': './src/pages/selectPage.tsx',
+        './managementLayout': './src/layout/managementLayout.tsx',
       },
       shared: {
         react: {

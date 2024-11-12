@@ -64,6 +64,7 @@ export default defineConfig({
       name: 'remote_apis', // Ensure this is properly set
       exposes: {
         './auth': './src/SWRHooks/auth.ts', // Check if the path is correct
+        './contest': './src/SWRHooks/contest.ts',
       },
       shared: {
         react: {
