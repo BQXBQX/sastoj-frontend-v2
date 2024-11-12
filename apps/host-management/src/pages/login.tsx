@@ -8,7 +8,7 @@ export default function Login() {
     <LoginPage
       title="SAST Online Judge 管理平台"
       desc="This is SAST Online Judge Management Platform"
-      loginCallback={() => navigate({ to: '/select' })}
+      loginCallback={() => navigate({ to: '/contest' })}
     />
   );
 }

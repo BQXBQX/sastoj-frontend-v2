@@ -5,7 +5,7 @@ import {
   createRouter,
 } from '@tanstack/react-router';
 import Login from '../pages/login';
-import Select from '../pages/select';
+import Contest from '../pages/contest';
 import { Index } from '../pages';
 
 const rootRoute = createRootRoute({
@@ -24,12 +24,12 @@ const loginRoute = createRoute({
   component: () => <Login />,
 });
 
-const selectRoute = createRoute({
+const contestRoute = createRoute({
   getParentRoute: () => indexRoute,
-  path: '/select',
-  component: () => <Select />,
+  path: '/contest',
+  component: () => <Contest />,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, loginRoute, selectRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, loginRoute, contestRoute]);
 
 export const router = createRouter({ routeTree, defaultPreload: 'intent' });
