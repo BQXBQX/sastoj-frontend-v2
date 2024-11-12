@@ -4,7 +4,8 @@ import {
   createRoute,
   createRouter,
 } from '@tanstack/react-router';
-import { LoginPage } from 'remote_pages/login';
+import Login from '../pages/login';
+import Select from '../pages/select';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -25,14 +26,15 @@ const indexRoute = createRoute({
 const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login',
-  component: () => (
-    <LoginPage
-      title="SAST Online Judge 管理平台"
-      desc="This is SAST Online Judge Management Platform"
-    />
-  ),
+  component: () => <Login />,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, loginRoute]);
+const selectRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/select',
+  component: () => <Select />,
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, loginRoute, selectRoute]);
 
 export const router = createRouter({ routeTree, defaultPreload: 'intent' });

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as variables from '../const/Variable';
 import { Logo } from '../components/Logo';
-import { Button, Form, Input } from '@douyinfe/semi-ui';
+import { Button, Form, Input, Toast } from '@douyinfe/semi-ui';
 import { IconKey, IconUser } from '@douyinfe/semi-icons';
 import { useCallback, useState } from 'react';
 import { useSWRLogin } from 'remote_apis/auth';
@@ -56,21 +56,34 @@ const Title = styled.p`
   margin: 0.4rem;
 `;
 
-export interface LoginProps {
+export interface LoginPageProps {
   title?: string;
   desc?: string;
   loginCallback?: () => void;
 }
 
-export function LoginPage(props: LoginProps) {
+export function LoginPage(props: LoginPageProps) {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const loginTrigger = useSWRLogin();
 
   const handleClick = useCallback((username: string, password: string) => {
-    void loginTrigger(username, password);
-    if (props.loginCallback) props.loginCallback();
+    if (!username) {
+      Toast.error('请输入用户名');
+      return;
+    } else if (!password) {
+      Toast.error('请输入密码');
+      return;
+    }
+
+    loginTrigger(username, password)
+      .then(() => {
+        if (props.loginCallback) props.loginCallback();
+      })
+      .catch(() => {
+        Toast.error('用户名或密码错误');
+      });
   }, []);
 
   return (
