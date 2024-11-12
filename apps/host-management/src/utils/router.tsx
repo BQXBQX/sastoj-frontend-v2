@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-router';
 import Login from '../pages/login';
 import Select from '../pages/select';
+import { Index } from '../pages';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -14,13 +15,7 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: function Index() {
-    return (
-      <div className="p-2">
-        <h3>Welcome Home!</h3>
-      </div>
-    );
-  },
+  component: () => <Index />,
 });
 
 const loginRoute = createRoute({
@@ -30,7 +25,7 @@ const loginRoute = createRoute({
 });
 
 const selectRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => indexRoute,
   path: '/select',
   component: () => <Select />,
 });

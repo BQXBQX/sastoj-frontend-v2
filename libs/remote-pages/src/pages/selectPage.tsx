@@ -28,7 +28,7 @@ const ContestContainer = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1rem;
 `;
 
@@ -79,7 +79,7 @@ export function SelectPage(props: SelectPageProps) {
                 </div>
               }
               style={{
-                minWidth: 360,
+                minWidth: 340,
                 height: 220,
               }}
               headerExtraContent={<Text link>选中</Text>}
