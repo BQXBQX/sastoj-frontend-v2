@@ -1,7 +1,8 @@
-import { Button, Form, Select, SideSheet, Toast } from '@douyinfe/semi-ui';
+import { Button, Form, SideSheet, Toast } from '@douyinfe/semi-ui';
 import { memo, useState } from 'react';
 import { type Contest } from 'remote_apis/compiled-types/apis/contest';
 import { useAddContest } from 'remote_apis/contest';
+import { contestType } from '../const/contestType';
 
 interface AddContestButtonProps {
   onSuccess?: () => void;
@@ -58,9 +59,11 @@ const AddContestButton = (props: AddContestButtonProps) => {
           <Form.Input field="title" label="比赛标题" />
           <Form.TextArea field="description" label="比赛描述"></Form.TextArea>
           <Form.Select field="type" label="比赛类型" style={{ width: '100%' }}>
-            <Select.Option value={1}>IOI</Select.Option>
-            <Select.Option value={2}>ACM</Select.Option>
-            <Select.Option value={3}>FC</Select.Option>
+            {Object.entries(contestType).map(([key, value]) => (
+              <Form.Select.Option key={key} value={key}>
+                {value}
+              </Form.Select.Option>
+            ))}
           </Form.Select>
           <Form.DatePicker
             type="dateTime"

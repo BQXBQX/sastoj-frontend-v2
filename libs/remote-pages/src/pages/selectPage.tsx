@@ -1,14 +1,23 @@
-import { Card, Pagination } from '@douyinfe/semi-ui';
+import { Button, Card, Pagination, Space, Tag, Toast } from '@douyinfe/semi-ui';
 import { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useGetContests } from 'remote_apis/contest';
 import Text from '@douyinfe/semi-ui/lib/es/typography/text';
 import { IconCalendarClock } from '@douyinfe/semi-icons';
 import AddContestButton from '../components/AddContestButton';
+import { contestType } from '../const/contestType';
+import { TagColor } from '@douyinfe/semi-ui/lib/es/tag';
+import { useDeleteContest } from 'remote_apis/contest';
 
 interface SelectPageProps {
   type: 'competition' | 'management';
 }
+
+const contestTypeColor: { [key: number]: string } = {
+  1: 'amber',
+  2: 'violet',
+  3: 'cyan',
+};
 
 const SelectContainer = styled.div`
   display: flex;
@@ -50,6 +59,7 @@ export const SelectHeaderContainer = styled.div`
 
 export function SelectPage(props: SelectPageProps) {
   const [contestsCurrentPage, setContestsCurrentPage] = useState<number>(0);
+  const deleteTrigger = useDeleteContest();
   const {
     data: contestData,
     isLoading,
@@ -73,11 +83,7 @@ export function SelectPage(props: SelectPageProps) {
           的比赛
         </Title>
         {props.type === 'management' && (
-          <AddContestButton
-            onSuccess={() => {
-              mutate();
-            }}
-          />
+          <AddContestButton onSuccess={() => mutate()} />
         )}
       </SelectHeaderContainer>
       <ContestContainer>
@@ -85,6 +91,7 @@ export function SelectPage(props: SelectPageProps) {
           return (
             <Card
               key={key}
+              headerStyle={{ padding: '0.8rem' }}
               title={
                 <div
                   style={{
@@ -95,14 +102,51 @@ export function SelectPage(props: SelectPageProps) {
                 >
                   <IconCalendarClock />
                   <strong>{contest.title}</strong>
+                  <Tag
+                    color={contestTypeColor[Number(contest.type)] as TagColor}
+                  >
+                    {contestType[Number(contest.type)]}
+                  </Tag>
                 </div>
               }
+              bodyStyle={{ flexGrow: 1, overflow: 'scroll', padding: '0.8rem' }}
               style={{
                 minWidth: 340,
                 height: 220,
+                display: 'flex',
+                flexDirection: 'column',
               }}
               headerExtraContent={<Text link>选中</Text>}
               loading={isLoading}
+              footerLine={true}
+              footerStyle={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                padding: '0.8rem',
+              }}
+              footer={
+                <Space>
+                  <Button
+                    theme="outline"
+                    type="danger"
+                    onClick={() => {
+                      deleteTrigger(contest.id)
+                        .then(() => {
+                          Toast.info('删除比赛成功');
+                          mutate();
+                        })
+                        .catch(() => {
+                          Toast.error('删除比赛失败');
+                        });
+                    }}
+                  >
+                    删除比赛
+                  </Button>
+                  <Button theme="solid" type="primary">
+                    编辑比赛
+                  </Button>
+                </Space>
+              }
             >
               {contest.description}
             </Card>

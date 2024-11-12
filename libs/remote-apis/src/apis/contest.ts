@@ -4,12 +4,12 @@ export interface Contest {
   description?: string;
   endTime?: string;
   extraTime?: number;
-  id?: number;
+  id: number;
   language?: string;
   startTime?: string;
   state?: number;
   title?: string;
-  type?: number;
+  type: number;
   [property: string]: unknown;
 }
 
@@ -35,5 +35,15 @@ export const addContest = async (
     url: '/contest',
     method: 'POST',
     data: arg.contest,
+  });
+};
+
+export const deleteContest = async (
+  _url: string,
+  { arg }: { arg: { contestId: number } },
+) => {
+  return await REQUEST({
+    url: `/contest/${arg.contestId}`,
+    method: 'DELETE',
   });
 };

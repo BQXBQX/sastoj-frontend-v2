@@ -1,5 +1,10 @@
 import useSWR from 'swr';
-import { addContest, Contest, getContests } from '../apis/contest';
+import {
+  addContest,
+  Contest,
+  deleteContest,
+  getContests,
+} from '../apis/contest';
 import useSWRMutation from 'swr/mutation';
 
 export const useGetContests = (size: number, current: number) => {
@@ -20,4 +25,14 @@ export const useAddContest = () => {
   };
 
   return addContestTrigger;
+};
+
+export const useDeleteContest = () => {
+  const { trigger } = useSWRMutation('/contest', deleteContest);
+
+  const deleteContestTrigger = async (contestId: number) => {
+    await trigger({ contestId });
+  };
+
+  return deleteContestTrigger;
 };
