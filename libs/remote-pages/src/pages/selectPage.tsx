@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useGetContests } from 'remote_apis/contest';
 import Text from '@douyinfe/semi-ui/lib/es/typography/text';
 import { IconCalendarClock } from '@douyinfe/semi-icons';
+import AddContestButton from '../components/AddContestButton';
 
 interface SelectPageProps {
   type: 'competition' | 'management';
@@ -39,12 +40,21 @@ export const PaginationContainer = styled.div`
   justify-content: end;
 `;
 
+export const SelectHeaderContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export function SelectPage(props: SelectPageProps) {
   const [contestsCurrentPage, setContestsCurrentPage] = useState<number>(0);
-  const { data: contestData, isLoading } = useGetContests(
-    contestsCurrentPage,
-    10,
-  );
+  const {
+    data: contestData,
+    isLoading,
+    mutate,
+  } = useGetContests(contestsCurrentPage, 9);
   const greetingTime = useMemo(() => {
     const currentHour = new Date().getHours();
     if (currentHour >= 11 && currentHour < 14) return '中午';
@@ -56,11 +66,20 @@ export function SelectPage(props: SelectPageProps) {
 
   return (
     <SelectContainer>
-      <Title>
-        👋 {greetingTime}好, 下面是您可以
-        {props.type === 'competition' ? '参加' : '管理'}
-        的比赛
-      </Title>
+      <SelectHeaderContainer>
+        <Title>
+          👋 {greetingTime}好, 下面是您可以
+          {props.type === 'competition' ? '参加' : '管理'}
+          的比赛
+        </Title>
+        {props.type === 'management' && (
+          <AddContestButton
+            onSuccess={() => {
+              mutate();
+            }}
+          />
+        )}
+      </SelectHeaderContainer>
       <ContestContainer>
         {(contestData?.contests ?? []).map((contest, key) => {
           return (

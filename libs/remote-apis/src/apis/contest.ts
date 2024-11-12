@@ -26,3 +26,14 @@ export const getContests = async ({
     params: { size, current },
   });
 };
+
+export const addContest = async (
+  _url: string,
+  { arg }: { arg: { contest: Contest } },
+) => {
+  return await REQUEST({
+    url: '/contest',
+    method: 'POST',
+    data: arg.contest,
+  });
+};

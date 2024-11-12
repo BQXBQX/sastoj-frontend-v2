@@ -1,12 +1,23 @@
 import useSWR from 'swr';
-import { getContests } from '../apis/contest';
+import { addContest, Contest, getContests } from '../apis/contest';
+import useSWRMutation from 'swr/mutation';
 
 export const useGetContests = (size: number, current: number) => {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     ['/contest', size, current],
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ([_key, size, current]) => getContests({ size, current }),
   );
 
-  return { data, error, isLoading };
+  return { data, error, isLoading, mutate };
+};
+
+export const useAddContest = () => {
+  const { trigger } = useSWRMutation('/contest', addContest);
+
+  const addContestTrigger = async (contest: Contest) => {
+    await trigger({ contest });
+  };
+
+  return addContestTrigger;
 };

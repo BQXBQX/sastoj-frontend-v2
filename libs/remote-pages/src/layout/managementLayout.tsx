@@ -10,6 +10,8 @@ import logoNoText from '../assets/logo_no_text.svg';
 import text from '../assets/text.svg';
 import { Breadcrumb } from '@douyinfe/semi-ui';
 import { IconArticle, IconHome } from '@douyinfe/semi-icons';
+import { Avatar } from '@douyinfe/semi-ui';
+import * as variables from '../const/Variable';
 
 const { Header, Content, Sider } = Layout;
 
@@ -74,15 +76,31 @@ export function ManagementLayout({ children }: { children: React.ReactNode }) {
             flexDirection: 'row',
             boxSizing: 'border-box',
             padding: '0 1rem',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            position: 'sticky',
+            top: 0,
+            backgroundColor: variables.WHITE_BACKGROUND,
           }}
         >
-          <Breadcrumb>
-            <Breadcrumb.Item icon={<IconHome size="small" />}></Breadcrumb.Item>
-            <Breadcrumb.Item icon={<IconArticle size="small" />}>
-              Breadcrumb
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>With Icon</Breadcrumb.Item>
-          </Breadcrumb>
+          <Breadcrumb
+            routes={[
+              {
+                path: '/',
+                href: '/',
+                icon: <IconHome size="small"></IconHome>,
+              },
+              {
+                path: '/breadcrumb',
+                href: '/zh-CN/navigation/breadcrumb',
+                name: 'breadcrumb',
+                icon: <IconArticle size="small" />,
+              },
+            ]}
+          ></Breadcrumb>
+          <Avatar size="extra-small" color="amber">
+            master
+          </Avatar>
         </Header>
         <Content style={{ flexGrow: 1 }}>{children}</Content>
       </Layout>

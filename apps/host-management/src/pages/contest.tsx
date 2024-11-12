@@ -1,5 +1,5 @@
 import { SelectPage } from 'remote_pages/select';
 
-export default function Select() {
+export default function Contest() {
   return <SelectPage type="management" />;
 }
