@@ -32,4 +32,8 @@ const contestRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([indexRoute, loginRoute, contestRoute]);
 
-export const router = createRouter({ routeTree, defaultPreload: 'intent' });
+export const router = createRouter({
+  routeTree,
+  defaultPreload: 'intent',
+  basepath: process.env.NODE_ENV === 'development' ? '' : '/dashboard',
+});

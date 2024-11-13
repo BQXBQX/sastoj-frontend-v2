@@ -58,9 +58,9 @@ export default defineConfig({
     new ModuleFederationPlugin({
       name: 'host_competition',
       remotes: {
-        remote_components:
-          'remote_components@http://localhost:9090/mf-manifest.json',
-        remote_pages: 'remote_pages@http://localhost:9091/mf-manifest.json',
+        remote_pages: isDev
+          ? 'remote_pages@http://localhost:9091/mf-manifest.json'
+          : 'remote_pages@/remote_pages/mf-manifest.json',
       },
       shared: ['react', 'react-dom'],
     }),
