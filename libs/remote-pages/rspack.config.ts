@@ -63,7 +63,9 @@ export default defineConfig({
     new ModuleFederationPlugin({
       name: 'remote_pages', // Ensure this is properly set
       remotes: {
-        remote_apis: 'remote_apis@http://localhost:9092/mf-manifest.json',
+        remote_apis: isDev
+          ? 'remote_apis@http://localhost:9092/mf-manifest.json'
+          : 'remote_apis@/mf-manifest.json',
       },
       exposes: {
         './login': './src/pages/loginPage.tsx',
