@@ -28,3 +28,18 @@ sastoj-frontend-v2/
 ```
 
 Competition is the competition front end, management is the competition system management end, and practice is the daily practice front end.
+
+# 🚀 Quick Start
+
+Since module federation is used, libs remote must be running before the host start.
+
+```bash
+# run remote libs
+pnpm run libs:dev
+
+# run host management
+pnpm run management:dev
+
+# run host competition
+pnpm run competition:dev
+```

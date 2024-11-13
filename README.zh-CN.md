@@ -28,3 +28,18 @@ sastoj-frontend-v2/
 ```
 
 **competition 是比赛前端，management 是赛制管理端，practice 是日常练习前端。**
+
+# 🚀 快速开始
+
+由于使用了模块联合，因此在主机启动之前必须运行 libs remote。
+
+```bash
+# run remote libs
+pnpm run libs:dev
+
+# run host management
+pnpm run management:dev
+
+# run host competition
+pnpm run competition:dev
+```
