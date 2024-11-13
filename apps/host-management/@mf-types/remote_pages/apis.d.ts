@@ -1,0 +1,3 @@
+
+    export type RemoteKeys = 'remote_pages/login' | 'remote_pages/button' | 'remote_pages/select' | 'remote_pages/managementLayout';
+    type PackageType<T> = T extends 'remote_pages/managementLayout' ? typeof import('remote_pages/managementLayout') :T extends 'remote_pages/select' ? typeof import('remote_pages/select') :T extends 'remote_pages/button' ? typeof import('remote_pages/button') :T extends 'remote_pages/login' ? typeof import('remote_pages/login') :any;
