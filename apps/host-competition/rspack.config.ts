@@ -78,6 +78,7 @@ export default defineConfig({
   },
   devServer: isDev
     ? {
+        port: '8082',
         proxy: [
           {
             context: ['/api'],

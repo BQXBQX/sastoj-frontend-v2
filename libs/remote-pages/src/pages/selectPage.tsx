@@ -91,7 +91,13 @@ export function SelectPage(props: SelectPageProps) {
           return (
             <Card
               key={key}
-              headerStyle={{ padding: '0.8rem' }}
+              loading={isLoading}
+              style={{
+                minWidth: 340,
+                height: 220,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
               title={
                 <div
                   style={{
@@ -109,15 +115,9 @@ export function SelectPage(props: SelectPageProps) {
                   </Tag>
                 </div>
               }
-              bodyStyle={{ flexGrow: 1, overflow: 'scroll', padding: '0.8rem' }}
-              style={{
-                minWidth: 340,
-                height: 220,
-                display: 'flex',
-                flexDirection: 'column',
-              }}
+              headerStyle={{ padding: '0.8rem' }}
               headerExtraContent={<Text link>选中</Text>}
-              loading={isLoading}
+              bodyStyle={{ flexGrow: 1, overflow: 'scroll', padding: '0.8rem' }}
               footerLine={true}
               footerStyle={{
                 display: 'flex',

@@ -23,15 +23,19 @@ const AddContestButton = (props: AddContestButtonProps) => {
       <Button
         theme="solid"
         onClick={() => {
-          addContestTrigger(addContest ?? {})
-            .then(() => {
-              setVisible(false);
-              Toast.info('添加比赛成功');
-              if (props.onSuccess) props.onSuccess();
-            })
-            .catch(() => {
-              Toast.error('添加比赛失败');
-            });
+          if (addContest) {
+            addContestTrigger(addContest)
+              .then(() => {
+                setVisible(false);
+                Toast.info('添加比赛成功');
+                if (props.onSuccess) props.onSuccess();
+              })
+              .catch(() => {
+                Toast.error('添加比赛失败');
+              });
+          } else {
+            Toast.error('请填写比赛信息');
+          }
         }}
       >
         提交
