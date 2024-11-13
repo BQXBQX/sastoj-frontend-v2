@@ -17,7 +17,7 @@ export default defineConfig({
     extensions: ['...', '.ts', '.tsx', '.jsx'],
   },
   output: {
-    publicPath: isDev ? 'http://localhost:9092/' : '/dist/',
+    publicPath: isDev ? 'http://localhost:9092/' : '/remote_apis/',
     filename: '[name].js',
     path: `${__dirname}/dist`,
     library: {
