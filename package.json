@@ -10,7 +10,8 @@
     "competition:dev": "nx run-many --target=dev --projects=host-competition",
     "management:dev": "nx run-many --target=dev --projects=host-management",
     "lint": "nx run-many --target=lint --all",
-    "build": "nx run-many --target=build --all"
+    "build": "nx run-many --target=build --all",
+    "docker:build": " docker build --no-cache -t sastoj-frontend-v2 ."
   },
   "private": true,
   "devDependencies": {

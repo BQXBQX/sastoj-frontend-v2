@@ -35,7 +35,6 @@ app.use(
 // app.use("/dashboard", express.static(managementDir));
 app.get("/dashboard/*", (req, res) => {
   const filePath = path.join(managementDir, req.path).replace("dashboard", "");
-  console.log(filePath);
 
   if (fs.existsSync(filePath) && fs.lstatSync(filePath).isFile()) {
     return res.sendFile(filePath);
@@ -49,12 +48,19 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
+  const filePath = path.join(competitionDir, req.path);
+
+  if (fs.existsSync(filePath) && fs.lstatSync(filePath).isFile()) {
+    return res.sendFile(filePath);
+  }
+
   res.sendFile(path.join(competitionDir, "index.html"));
 });
 
 app.use("/", express.static(competitionDir));
 
 const port = 12345;
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
