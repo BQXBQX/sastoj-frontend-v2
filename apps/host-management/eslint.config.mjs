@@ -27,5 +27,5 @@ export default [
       ...reactHooks.configs.recommended.rules,
     },
   },
-  { ignores: ['dist/', '@mf-types/**'] },
+  { ignores: ['dist/', '@mf-types/**', 'scripts/**'] },
 ];
