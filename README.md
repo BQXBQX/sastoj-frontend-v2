@@ -1,10 +1,19 @@
 # SAST Online Judge Frontend V2
 
-<div style="display: flex; align-items: center; gap:1.5rem">
-    <img src="public/logo.svg" alt="图片1" height="50" />
+<div style="display: flex; align-items: center; gap:1.5rem; flex-direction: row;">
+    <picture>
+        <source srcset="public/logo_dark.svg" media="(prefers-color-scheme: dark)">
+        <source srcset="public/logo.svg" media="(prefers-color-scheme: light)">
+        <img src="public/logo.svg" alt="Logo" height="50">
+    </picture>
     <div style="width: 1px; background-color: #ccc; height: 30px;"></div>
-    <img src="public/logo_cat.svg" alt="图片2" height="50" />
+    <picture>
+        <source srcset="public/logo_cat_dark.svg" media="(prefers-color-scheme: dark)">
+        <source srcset="public/logo_cat.svg" media="(prefers-color-scheme: light)">
+        <img src="public/logo_cat.svg" alt="Cat Logo" height="50">
+    </picture>
 </div>
+
 <br />
 
 **Supported by Module Federation**
