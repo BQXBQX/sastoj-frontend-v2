@@ -1,5 +1,12 @@
 # SAST Online Judge Frontend V2
 
+<picture>
+    <source srcset="public/logo_cat_dark.svg" media="(prefers-color-scheme: dark)">
+    <source srcset="public/logo_cat.svg" media="(prefers-color-scheme: light)">
+    <img src="public/logo_cat.svg" alt="Cat Logo" height="50">
+</picture>
+<br />
+
 **Supported by Module Federation**
 
 This is the front-end repository of SAST Online Judge V2, which contains all the front-end codes and documents of SASTOJ. SASTOJ is an OJ system that natively supports distributed deployment to meet the low bandwidth requirements of the computer room, and also supports stand-alone deployment. With SASTOJ, you can quickly start an IOI competition. Players can run the code online (without submitting, including input data, referred to as running) and view the compilation results and running output, submit the code and see the evaluation results in real time (referred to as judging or submitting), view the ranking list during the competition, and support multiple languages ​​(check the programming language when submitting).
@@ -29,7 +36,7 @@ sastoj-frontend-v2/
 
 Competition is the competition front end, management is the competition system management end, and practice is the daily practice front end.
 
-# 🚀 Quick Start
+## 🚀 Quick Start
 
 Since module federation is used, libs remote must be running before the host start.
 
@@ -42,4 +49,17 @@ pnpm run management:dev
 
 # run host competition
 pnpm run competition:dev
+```
+
+## 🖥 Deploy
+
+It is recommended to use docker deployment
+
+```bash
+# build docker image
+pnpm run docker:build
+
+# run docker container
+docker run -d -p 12345:12345 --name sastoj-frontend-v2-container sastoj-frontend-v2
+
 ```
