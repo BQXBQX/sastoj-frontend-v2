@@ -1,5 +1,12 @@
 # SAST Online Judge Frontend V2
 
+<div style="display: flex; align-items: center; gap:1.5rem">
+    <img src="public/logo.svg" alt="图片1" height="50" />
+    <div style="width: 1px; background-color: #ccc; height: 30px;"></div>
+    <img src="public/logo_cat.svg" alt="图片2" height="50" />
+</div>
+<br />
+
 **Supported by Module Federation**
 
 This is the front-end repository of SAST Online Judge V2, which contains all the front-end codes and documents of SASTOJ. SASTOJ is an OJ system that natively supports distributed deployment to meet the low bandwidth requirements of the computer room, and also supports stand-alone deployment. With SASTOJ, you can quickly start an IOI competition. Players can run the code online (without submitting, including input data, referred to as running) and view the compilation results and running output, submit the code and see the evaluation results in real time (referred to as judging or submitting), view the ranking list during the competition, and support multiple languages ​​(check the programming language when submitting).
