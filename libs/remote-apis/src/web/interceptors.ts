@@ -49,7 +49,7 @@ export const responseFailed = (error: AxiosError): Promise<never> | void => {
   } else if (response?.status === HTTP_STATUS.FORBIDDEN) {
     return Promise.reject({ desc: '没有权限访问' } as ResponseError);
   } else if (response?.status === HTTP_STATUS.AUTHENTICATE) {
-    window.location.href = '/login';
+    // window.location.href = '/login';
     localStorage.clearAll();
     return Promise.reject({ desc: '需要鉴权' } as ResponseError);
   } else if (response?.status === HTTP_STATUS.SERVER_ERROR) {

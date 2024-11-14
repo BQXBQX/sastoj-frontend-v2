@@ -1,5 +1,5 @@
 import { Button, Card, Pagination, Space, Tag, Toast } from '@douyinfe/semi-ui';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useGetContests } from 'remote_apis/contest';
 import Text from '@douyinfe/semi-ui/lib/es/typography/text';
@@ -8,6 +8,7 @@ import AddContestButton from '../components/AddContestButton';
 import { contestType } from '../const/contestType';
 import { TagColor } from '@douyinfe/semi-ui/lib/es/tag';
 import { useDeleteContest } from 'remote_apis/contest';
+import { DeleteButton } from '../components/DeleteButton';
 
 interface SelectPageProps {
   type: 'competition' | 'management';
@@ -74,6 +75,10 @@ export function SelectPage(props: SelectPageProps) {
     else return '早上';
   }, []);
 
+  const handleSelectContest = useCallback((contestID: number) => {
+    console.log(contestID);
+  }, []);
+
   return (
     <SelectContainer>
       <SelectHeaderContainer>
@@ -116,7 +121,7 @@ export function SelectPage(props: SelectPageProps) {
                 </div>
               }
               headerStyle={{ padding: '0.8rem' }}
-              headerExtraContent={<Text link>选中</Text>}
+              headerExtraContent={<Text link>编辑</Text>}
               bodyStyle={{ flexGrow: 1, overflow: 'scroll', padding: '0.8rem' }}
               footerLine={true}
               footerStyle={{
@@ -126,14 +131,15 @@ export function SelectPage(props: SelectPageProps) {
               }}
               footer={
                 <Space>
-                  <Button
-                    theme="outline"
-                    type="danger"
-                    onClick={() => {
+                  <DeleteButton
+                    modelTitle="删除比赛"
+                    modalContent={`你确定要删除比赛${contest.title}吗？`}
+                    buttonTrigger={(onSuccess) => {
                       deleteTrigger(contest.id)
                         .then(() => {
                           Toast.info('删除比赛成功');
                           mutate();
+                          onSuccess();
                         })
                         .catch(() => {
                           Toast.error('删除比赛失败');
@@ -141,9 +147,13 @@ export function SelectPage(props: SelectPageProps) {
                     }}
                   >
                     删除比赛
-                  </Button>
-                  <Button theme="solid" type="primary">
-                    编辑比赛
+                  </DeleteButton>
+                  <Button
+                    theme="solid"
+                    type="primary"
+                    onClick={() => handleSelectContest(contest.id)}
+                  >
+                    选中比赛
                   </Button>
                 </Space>
               }
