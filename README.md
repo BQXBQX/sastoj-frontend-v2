@@ -1,19 +1,10 @@
 # SAST Online Judge Frontend V2
 
-<div style="display: flex; align-items: center; gap:1.5rem; flex-direction: row;">
-    <picture>
-        <source srcset="public/logo_dark.svg" media="(prefers-color-scheme: dark)">
-        <source srcset="public/logo.svg" media="(prefers-color-scheme: light)">
-        <img src="public/logo.svg" alt="Logo" height="50">
-    </picture>
-    <div style="width: 1px; background-color: #ccc; height: 30px;"></div>
-    <picture>
-        <source srcset="public/logo_cat_dark.svg" media="(prefers-color-scheme: dark)">
-        <source srcset="public/logo_cat.svg" media="(prefers-color-scheme: light)">
-        <img src="public/logo_cat.svg" alt="Cat Logo" height="50">
-    </picture>
-</div>
-
+<picture>
+    <source srcset="public/logo_cat_dark.svg" media="(prefers-color-scheme: dark)">
+    <source srcset="public/logo_cat.svg" media="(prefers-color-scheme: light)">
+    <img src="public/logo_cat.svg" alt="Cat Logo" height="50">
+</picture>
 <br />
 
 **Supported by Module Federation**
@@ -58,4 +49,17 @@ pnpm run management:dev
 
 # run host competition
 pnpm run competition:dev
+```
+
+## 🖥 Deploy
+
+It is recommended to use docker deployment
+
+```bash
+# build docker image
+pnpm run docker:build
+
+# run docker container
+docker run -d -p 12345:12345 --name sastoj-frontend-v2-container sastoj-frontend-v2
+
 ```
