@@ -36,7 +36,7 @@ sastoj-frontend-v2/
 
 Competition is the competition front end, management is the competition system management end, and practice is the daily practice front end.
 
-# 🚀 Quick Start
+## 🚀 Quick Start
 
 Since module federation is used, libs remote must be running before the host start.
 
