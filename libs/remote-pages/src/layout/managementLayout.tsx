@@ -1,50 +1,39 @@
 import { Layout, Nav } from '@douyinfe/semi-ui';
-import {
-  IconAvatar,
-  IconButton,
-  IconCollapse,
-  IconDescriptions,
-  IconTooltip,
-} from '@douyinfe/semi-icons-lab';
 import logoNoText from '../assets/logo_no_text.svg';
 import text from '../assets/text.svg';
 import { Breadcrumb } from '@douyinfe/semi-ui';
 import { IconArticle, IconHome } from '@douyinfe/semi-icons';
 import { Avatar } from '@douyinfe/semi-ui';
 import * as variables from '../const/Variable';
+import { NavItems } from '@douyinfe/semi-ui/lib/es/navigation';
+import { useEffect } from 'react';
 
 const { Header, Content, Sider } = Layout;
 
-export function ManagementLayout({ children }: { children: React.ReactNode }) {
+export type { NavItems };
+
+export interface ManagementLayoutProps {
+  navItems: NavItems;
+  children: React.ReactNode;
+  defaultSelectKey: string;
+}
+
+export function ManagementLayout({
+  children,
+  navItems,
+  defaultSelectKey,
+}: ManagementLayoutProps) {
+  useEffect(() => {
+    console.log(defaultSelectKey);
+  }, [defaultSelectKey]);
   return (
     <Layout style={{ height: '100%', width: '100%' }}>
       <Sider>
         <Nav
           style={{ maxWidth: 220, height: '100%' }}
-          defaultSelectedKeys={['Contest']}
-          items={[
-            {
-              itemKey: 'Contests',
-              text: '比赛管理',
-              icon: <IconDescriptions />,
-            },
-            { itemKey: 'Users', text: '用户管理', icon: <IconAvatar /> },
-            {
-              itemKey: 'Problems',
-              text: '问题管理',
-              icon: <IconTooltip />,
-            },
-            {
-              itemKey: 'Cases',
-              text: '测试点管理',
-              icon: <IconCollapse />,
-            },
-            {
-              itemKey: 'Judges',
-              text: '阅卷管理',
-              icon: <IconButton />,
-            },
-          ]}
+          defaultSelectedKeys={[defaultSelectKey]}
+          // selectedKeys={[defaultSelectKey]}
+          items={navItems}
           footer={{
             collapseButton: true,
           }}
