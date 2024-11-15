@@ -139,6 +139,9 @@ importers:
 
   apps/host-management:
     dependencies:
+      '@douyinfe/semi-icons-lab':
+        specifier: ^2.69.0
+        version: 2.69.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@module-federation/enhanced':
         specifier: ^0.7.1
         version: 0.7.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)(webpack@5.96.1(@swc/core@1.5.29(@swc/helpers@0.5.13)))
@@ -364,9 +367,6 @@ importers:
       '@douyinfe/semi-icons':
         specifier: ^2.69.0
         version: 2.69.0(react@18.3.1)
-      '@douyinfe/semi-icons-lab':
-        specifier: ^2.69.0
-        version: 2.69.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@douyinfe/semi-ui':
         specifier: ^2.69.0
         version: 2.69.0(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
