@@ -3,18 +3,18 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
-  redirect,
 } from '@tanstack/react-router';
 import { Index } from '../pages';
 import Login from '../pages/login';
+import Contest from '../pages/contest';
 
 export const rootRoute = createRootRoute({
   component: () => <Outlet />,
 });
 
-export const contestRoute = createRoute({
+export const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/contest',
+  path: '/',
   component: () => <Index />,
 });
 
@@ -24,30 +24,37 @@ export const loginRoute = createRoute({
   component: () => <Login />,
 });
 
-export const contestDetailRoute = createRoute({
-  getParentRoute: () => contestRoute,
-  path: '/:contestID', // dynamic route
-  component: ({ params }) => {
-    const { contestID } = params;
-    return <div>Contest ID: {contestID}</div>; // Display the dynamic contestId
-  },
+export const contestRoute = createRoute({
+  getParentRoute: () => indexRoute,
+  path: '/contests',
+  component: () => <Contest />,
 });
 
-export const indexRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/',
-  loader: () =>
-    redirect({
-      href: 'login',
-      statusCode: 301,
-    }),
+export const usersManagementRoute = createRoute({
+  getParentRoute: () => indexRoute,
+  path: '/users',
+  component: () => <>User Management</>,
+});
+
+export const problemsManagementRoute = createRoute({
+  getParentRoute: () => indexRoute,
+  path: '/problems',
+  component: () => <>Problem Management</>,
+});
+
+export const judgeRoute = createRoute({
+  getParentRoute: () => indexRoute,
+  path: '/judge',
+  component: () => <>Judge Management</>,
 });
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
   loginRoute,
+  usersManagementRoute,
   contestRoute,
-  contestDetailRoute,
+  problemsManagementRoute,
+  judgeRoute,
 ]);
 
 export const router = createRouter({

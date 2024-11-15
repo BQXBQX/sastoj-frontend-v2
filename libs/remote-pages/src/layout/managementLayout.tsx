@@ -24,11 +24,11 @@ export function ManagementLayout({ children }: { children: React.ReactNode }) {
           defaultSelectedKeys={['Contest']}
           items={[
             {
-              itemKey: 'Contest',
+              itemKey: 'Contests',
               text: '比赛管理',
               icon: <IconDescriptions />,
             },
-            { itemKey: 'User', text: '用户管理', icon: <IconAvatar /> },
+            { itemKey: 'Users', text: '用户管理', icon: <IconAvatar /> },
             {
               itemKey: 'Problems',
               text: '问题管理',
