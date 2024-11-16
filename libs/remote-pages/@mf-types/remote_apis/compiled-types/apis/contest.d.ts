@@ -15,6 +15,7 @@ export declare const getContests: ({ size, current, }: {
     current: number;
 }) => Promise<{
     contests: Contest[];
+    total: number;
 }>;
 export declare const addContest: (_url: string, { arg }: {
     arg: {

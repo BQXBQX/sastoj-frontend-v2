@@ -39,7 +39,7 @@ const ContestContainer = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 1rem;
 `;
 
@@ -65,7 +65,7 @@ export function SelectPage(props: SelectPageProps) {
     data: contestData,
     isLoading,
     mutate,
-  } = useGetContests(contestsCurrentPage, 9);
+  } = useGetContests(4, contestsCurrentPage + 1);
   const greetingTime = useMemo(() => {
     const currentHour = new Date().getHours();
     if (currentHour >= 11 && currentHour < 14) return '中午';
@@ -77,6 +77,7 @@ export function SelectPage(props: SelectPageProps) {
 
   const handleSelectContest = useCallback((contestID: number) => {
     console.log(contestID);
+    localStorage.setItem('contestID', JSON.stringify(contestID));
   }, []);
 
   return (
@@ -98,8 +99,9 @@ export function SelectPage(props: SelectPageProps) {
               key={key}
               loading={isLoading}
               style={{
-                minWidth: 340,
-                height: 220,
+                minWidth: 450,
+                minHeight: 250,
+                maxHeight: '50%',
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -165,8 +167,8 @@ export function SelectPage(props: SelectPageProps) {
       </ContestContainer>
       <PaginationContainer>
         <Pagination
-          total={(contestData?.contests ?? []).length}
-          pageSize={10}
+          total={contestData?.total ?? 0}
+          pageSize={4}
           currentPage={contestsCurrentPage + 1}
           onPageChange={(pageIndex) => setContestsCurrentPage(pageIndex - 1)}
         />

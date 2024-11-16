@@ -19,7 +19,7 @@ export const getContests = async ({
 }: {
   size: number;
   current: number;
-}): Promise<{ contests: Contest[] }> => {
+}): Promise<{ contests: Contest[]; total: number }> => {
   return await REQUEST({
     url: '/contest',
     method: 'GET',
