@@ -42,6 +42,8 @@ export const DeleteButton = (props: DeleteButtonProps) => {
         onOk={() => {
           props.buttonTrigger(() => setVisible(false));
         }}
+        onCancel={() => setVisible(false)}
+        closeOnEsc={true}
         okButtonProps={{ type: 'danger' }}
       >
         {props.modalContent}
